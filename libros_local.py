@@ -69,15 +69,7 @@ def registrar_historial(codigo_barras, accion, detalles):
         (codigo_barras, accion, detalles, fecha_actual)
     )
     conn.commit()
-   # Registrar acción en el historial
-# Registrar acción en el historial
-def registrar_historial(codigo_barras, accion, detalles):
-    fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute(
-        "INSERT INTO historial (codigo_barras, accion, detalles, fecha) VALUES (?, ?, ?, ?)",
-        (codigo_barras, accion, detalles, fecha_actual)
-    )
-    conn.commit()
+
 
 def buscar_libro(event=None):
     if event is not None and not isinstance(event, str):
@@ -181,7 +173,7 @@ def importar_varios_archivos():
             libros_externos = cursor_externa.fetchall()
 
             for libro_externo in libros_externos:
-                codigo_barras = libro_externo[2]  # Ajusta este índice si es necesario
+                codigo_barras = libro_externo[2]  
 
                 # Verificar si el libro ya existe en la base de datos actual
                 cursor.execute("SELECT * FROM libros WHERE codigo_barras = ?", (codigo_barras,))
